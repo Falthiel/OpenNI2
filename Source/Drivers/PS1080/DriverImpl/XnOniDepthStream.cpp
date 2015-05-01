@@ -43,10 +43,10 @@ OniStatus XnOniDepthStream::getProperty(int propertyId, void* data, int* pDataSi
 			return ONI_STATUS_BAD_PARAMETER;
 		}
 
-		XnUInt64 nValue;
-		m_pSensor->GetProperty(m_strType, XN_STREAM_PROPERTY_MAX_DEPTH, &nValue);
+		XnUInt64 nValueMax;
+		m_pSensor->GetProperty(m_strType, XN_STREAM_PROPERTY_MAX_DEPTH, &nValueMax);
 
-		*(int*)data = (int)nValue;
+		*(int*)data = (int)nValueMax;
 		return ONI_STATUS_OK;
 	case ONI_STREAM_PROPERTY_MIN_VALUE:
 		if (*pDataSize != sizeof(int))
@@ -54,10 +54,10 @@ OniStatus XnOniDepthStream::getProperty(int propertyId, void* data, int* pDataSi
 			return ONI_STATUS_BAD_PARAMETER;
 		}
 
-		XnUInt64 nValue;
-		m_pSensor->GetProperty(m_strType, XN_STREAM_PROPERTY_MIN_DEPTH, &nValue);
+		XnUInt64 nValueMin;
+		m_pSensor->GetProperty(m_strType, XN_STREAM_PROPERTY_MIN_DEPTH, &nValueMin);
 
-		*(int*)data = (int)nValue;
+		*(int*)data = (int)nValueMin;
 		return ONI_STATUS_OK;
 	case XN_STREAM_PROPERTY_DEPTH_SENSOR_CALIBRATION_INFO:
 		return ((XnSensorDepthStream*)m_pDeviceStream)->GetSensorCalibrationInfo(data, pDataSize);
